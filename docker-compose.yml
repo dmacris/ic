@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: "./"
+      dockerfile: Dockerfile
+    container_name: app-queviagem
+    volumes:
+      - .:/app
+      - bundle_gems:/usr/local/bundle
+    restart: always
+    ports:
+      - "8000:3000"
+    command: "bundle exec rails s -b 0.0.0.0"
+    stdin_open: true
+
+volumes:
+  bundle_gems:
+
+# networks:
+#   default:
+#     external:
+#       name: queviagem_default
